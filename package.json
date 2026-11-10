@@ -9,15 +9,19 @@
   },
   "exports": {
     ".": "./src/core/index.js",
+    "./art/*": "./src/art/*.js",
     "./fx/*": "./src/fx/*.js",
     "./core/*": "./src/core/*.js"
   },
   "scripts": {
+    "art": "node tools/art.mjs",
+    "art:cel": "node tools/art.mjs art/sentinel-cel.mjs --frames --preview",
     "render": "node tools/render.mjs",
     "check": "node tools/check.mjs",
     "gallery": "node tools/serve.mjs"
   },
   "devDependencies": {
+    "@resvg/resvg-js": "2.6.2",
     "esbuild": "^0.25.10"
   }
 }

@@ -178,6 +178,18 @@ Then go round: look at the contact sheet, fix the worst thing, render again. `--
 bugs don't show in samples. [docs/AUTHORING.md](docs/AUTHORING.md) has the contract, the drawing API and the quality
 bar. `node tools/serve.mjs` runs the gallery locally with your effects in it.
 
+## pixel art production.
+
+Use one recipe to export HUD pieces, character clips, and existing effects with transparent PNG atlases, frame data, and previews.
+
+```sh
+npm run art -- art/field-kit.mjs --frames
+```
+
+The field kit includes two palettes, a HUD with button states and icons, and a modular scout with idle, walk, and fire clips. See [the art pipeline guide](docs/ART_PIPELINE.md) for variants, authoring a recipe, and using the output in a game.
+
+After `npm ci`, run `npm run art:cel` to render both HD cel-shaded Sentinel loadouts. Open `records/art/sentinel-cel/preview.html` to compare their idle, walk, and fire clips. The same command writes transparent sequences and atlases.
+
 ## publish it on patch.
 
 Made a browser game with these? Put it on [Patch](https://patch.gg), where people play and remix browser games and

@@ -225,7 +225,11 @@ export function spriteSheet(fx, r, name) {
   const json = { frames: [], meta: {} };
   frames.forEach((f, i) => {
     const x = (i % cols) * w, y = Math.floor(i / cols) * h;
-    img.paste(f.clear, w, h, x, y);
+    // Cells do not overlap. Copy straight RGBA so translucent pixels keep their RGB and alpha.
+    for (let row = 0; row < h; row++) {
+      const from = row * w * 4, to = ((y + row) * img.w + x) * 4;
+      img.data.set(f.clear.subarray(from, from + w * 4), to);
+    }
     json.frames.push({
       filename: `${name} ${i}`, frame: { x, y, w, h }, rotated: false, trimmed: false,
       spriteSourceSize: { x: 0, y: 0, w, h }, sourceSize: { w, h }, duration: Math.round(1000 / fps),
